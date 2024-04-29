@@ -1,0 +1,13 @@
+@if (success || error) {
+  <div class="row mt-2 mb-2" [attr.id]="id">
+    <div class="col-12">
+      @if (error) {
+        <alert type="danger" [dismissible]="true">{{ error | translate }}</alert>
+      }
+
+      @if (success) {
+        <alert type="success" [dismissible]="true">{{ success | translate }}</alert>
+      }
+    </div>
+  </div>
+}

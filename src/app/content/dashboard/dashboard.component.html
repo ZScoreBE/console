@@ -1,0 +1,68 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.DASHBOARD.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{ players }}</h3>
+            <p>{{ 'COMPONENTS.DASHBOARD.players' | translate }}</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <a [routerLink]="['/players']" class="small-box-footer">
+            {{ 'COMPONENTS.DASHBOARD.moreInfo' | translate }} <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ leaderboards }}</h3>
+            <p>{{ 'COMPONENTS.DASHBOARD.leaderboards' | translate }}</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-rectangle-list"></i>
+          </div>
+          <a [routerLink]="['/leaderboards']" class="small-box-footer">
+            {{ 'COMPONENTS.DASHBOARD.moreInfo' | translate }} <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{ achievements }}</h3>
+            <p>{{ 'COMPONENTS.DASHBOARD.achievements' | translate }}</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <a [routerLink]="['/achievements']" class="small-box-footer">
+            {{ 'COMPONENTS.DASHBOARD.moreInfo' | translate }} <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

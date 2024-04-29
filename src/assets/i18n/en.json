@@ -1,0 +1,268 @@
+{
+  "COMMON": {
+    "name": "Name",
+    "email": "Email",
+    "actions": "Actions",
+    "search": "Search",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "ERRORS": {
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "userEmailNotUnique": "This email is already in use.",
+    "userNotActivated": "You have to activate your account.",
+    "invalidLogin": "The username and password do not match.",
+    "userAlreadyInvited": "This user is already invited with this email.",
+    "userAlreadyExists": "There is already a user with this email."
+  },
+  "FORM": {
+    "FIELDS": {
+      "name": "Name",
+      "email": "Email",
+      "organizationName": "Organization name",
+      "password": "Password",
+      "repeatPassword": "Repeat password",
+      "engine": "Game engine",
+      "apiKey": "API key",
+      "leaderboardScoreType": "Scoring type",
+      "sortDirection": "Sorting direction",
+      "description": "Description",
+      "achievementType": "Achievement type",
+      "achievementNeededCount": "How much is needed?"
+    },
+    "ERROR": {
+      "required": "This field is required",
+      "email": "Email does not seems to be valid",
+      "minlength": "This field needs at least {{minlength}} characters",
+      "maxlength": "This field can only have {{maxlength}} characters",
+      "min": "THe value can not be lower than {{min}}",
+      "max": "THe value can not be higher than {{max}}",
+      "confirmPassword": "The two passwords are not the same",
+      "invalidUrl": "This url is not valid",
+      "passwordNotStrong": "The password is not strong enough. The password should at least be 8 characters and contain lowercase letters, uppercase letters, number and symbols to make it strong.",
+      "passwordsDoNotMatch": "The two passwords do not match"
+    }
+  },
+  "COMPONENTS": {
+    "CONTENT": {
+      "liveModeWarning": "You are in live mode. Changes you will make will be reflected in the game."
+    },
+    "HEADER": {
+      "accountSettings": "Account settings",
+      "logout": "Logout",
+      "organization": "Organization",
+      "organizationSettings": "Organization settings",
+      "manageUsers": "Manage users",
+      "user": "Account",
+      "sandboxMode": "Sandbox mode",
+      "liveMode": "Live mode",
+      "switchMode": "Switch mode"
+    },
+    "FOOTER": {
+      "version": "Version",
+      "developedBy": "Developed by"
+    },
+    "SIDE-BAR": {
+      "dashboard": "Dashboard",
+      "systems": "Systems",
+      "leaderboards": "Leaderboards",
+      "achievements": "Achievements",
+      "settings": "Settings",
+      "general": "General",
+      "players": "Players"
+    },
+    "REGISTER": {
+      "submit": "Sign up",
+      "terms": "I agree to the <a href=\"{{termsUrl}}\" target=\"_blank\">terms</a>",
+      "alreadyAccount": "I already have an account",
+      "success": "You are successfully registered. To be able to sign in you need to activate your account. We have send you an email with the instructions on how to activate your account."
+    },
+    "ACTIVATE": {
+      "success": "You are now activated. You can login now.",
+      "error": "There went something wrong while activating your account, click the link in your email again please."
+    },
+    "LOGIN": {
+      "submit": "Sign in"
+    },
+    "CREATE-GAME": {
+      "title": "Create a new game game",
+      "submit": "Create game",
+      "selectAnEngine": "Select a game engine..."
+    },
+    "DASHBOARD": {
+      "title": "Dashboard",
+      "moreInfo": "More info",
+      "players": "Players",
+      "leaderboards": "Leaderboards",
+      "achievements": "Achievements"
+    },
+    "ORGANIZATION": {
+      "SETTINGS": {
+        "title": "Organization settings",
+        "submit": "Save",
+        "updateSuccess": "Successfully updated the organization"
+      }
+    },
+    "SETTINGS": {
+      "GENERAL": {
+        "regenerateKey": "Regenerate API key",
+        "title": "General game settings",
+        "updateInfo": "Settings on this page will always be immediately applied to the sandbox and live environment",
+        "success": "General game settings successfully updated",
+        "REGENERATE": {
+            "title": "Are you sure?",
+            "body": "Are you sure you want to regenerate the API keys for this game?",
+            "ok": "Regenerate API Keys",
+            "success": "Successfully regenerated the API keys"
+        }
+      }
+    },
+    "USERS": {
+      "SETTINGS": {
+        "title": "Account settings",
+        "updateInfoTitle": "Update info",
+        "submit": "Update info",
+        "updateSuccess": "Successfully updated user info"
+      },
+      "MANAGE": {
+        "USER-LIST": {
+          "title": "Manage users",
+          "resetPassword": "Reset password",
+          "admin": "Admin",
+          "resetPasswordSuccess": "We have send the user an email with instructions on how to reset their password",
+          "empty": "We found no users"
+        },
+        "INVITE-LIST": {
+          "title": "Manage pending invites",
+          "empty": "We found no pending invites",
+          "ADD": {
+            "title": "Send a new invite",
+            "subTitle": "Invite info",
+            "submit": "Send invite",
+            "success": "The user is successfully invited"
+          },
+          "DELETE": {
+            "title": "Are you sure?",
+            "body": "Are you sure you want to delete the invitation for: <strong>{{email}}</strong>?",
+            "ok": "Delete invite",
+            "success": "Invite deleted successfully"
+          }
+        }
+      }
+    },
+    "PLAYERS-LIST": {
+      "title": "Players",
+      "lastSignIn": "Last seen",
+      "neverSignedIn": "Not seen yet",
+      "empty": "No players found"
+    },
+    "PLAYERS": {
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete the player: <strong>{{name}}</strong>?",
+        "ok": "Delete player",
+        "success": "Player deleted successfully"
+      }
+    },
+    "ACHIEVEMENTS": {
+      "type": "Type",
+      "neededCount": "Amount needed",
+      "id": "ID",
+      "LIST": {
+        "title": "Achievements",
+        "empty": "No achievements found"
+      },
+      "DETAILS": {
+        "title": "Achievement: {{name}}",
+        "subTitleInfo": "Achievement info",
+        "subTitleDescription": "Achievement description"
+      },
+      "ADD": {
+        "title": "Create a new achievement",
+        "submit": "Create achievement",
+        "success": "Achievement successfully created"
+      },
+      "UPDATE": {
+        "title": "Update an achievement",
+        "submit": "Update achievement",
+        "success": "Achievement successfully updated"
+      },
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete the achievement: <strong>{{name}}</strong>?",
+        "ok": "Delete achievement",
+        "success": "Achievement deleted successfully"
+      }
+    },
+    "LEADERBOARDS": {
+      "id": "ID",
+      "direction": "Score Direction",
+      "scoreType": "Scoring type",
+      "LIST": {
+        "title": "Leaderboards",
+        "empty": "No leaderboards found"
+      },
+      "DETAILS": {
+        "title": "Leaderboard: {{name}}",
+        "subTitleInfo": "Leaderboard info",
+        "subTitleScores": "Scores",
+        "score": "Score",
+        "scoresEmpty": "No scores found"
+      },
+      "ADD": {
+        "title": "Create a new leaderboard",
+        "submit": "Create leaderboard",
+        "success": "Leaderboard successfully created"
+      },
+      "UPDATE": {
+        "title": "Update a leaderboard",
+        "submit": "Update leaderboard",
+        "success": "Leaderboard successfully updated"
+      },
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete the leaderboard: <strong>{{name}}</strong>?",
+        "ok": "Delete leaderboard",
+        "success": "Leaderboard deleted successfully"
+      }
+    }
+  },
+  "MODALS": {
+    "SELECT-GAMES": {
+      "title": "Select a game",
+      "addNewGame": "Create new game"
+    }
+  },
+  "ENUM": {
+    "GAME-ENGINE": {
+      "unity": "Unity",
+      "unreal": "Unreal",
+      "other": "Other"
+    },
+    "USER-INVITE-STATUS": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "rejected": "Rejected"
+    },
+    "SORT-DIRECTION": {
+      "asc": "Ascending",
+      "desc": "Descending"
+    },
+    "ACHIEVEMENT-TYPE": {
+      "single": "Single",
+      "multiple": "Multiple",
+      "singleDescription": "A single thing that needs to be completed",
+      "multipleDescription": "The player needs to complete or collect multiple things"
+    },
+    "LEADERBOARD-SCORE-TYPE": {
+      "latest": "Latest",
+      "highest": "Highest",
+      "multiple": "Multiple",
+      "latestDescription": "The player only has one score on this leaderboard. When you submit a new score for this player it will use this new score",
+      "highestDescription": "The player only has one score on this leaderboard. When you submit a new score for this player it will only be updated if that score is higher then it's current score",
+      "multipleDescription": "The player has multiple scores on this leaderboard. Every submitted score will be saved"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ config.titleKey | translate }}</h4>
+  <button type="button" class="btn-close close pull-right" data-dismiss="modal" aria-label="Close" (click)="close()">
+    <span aria-hidden="true"></span>
+  </button>
+</div>
+<div class="modal-body">
+  <p [innerHTML]="config.bodyKey | translate:config.bodyValues"></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" (click)="ok()">{{ config.okBtnKey | translate }}</button>
+  @if (config.cancelBtnKey) {
+    <button type="button" class="btn btn-primary" (click)="close()" data-dismiss="modal">
+      {{ config.cancelBtnKey| translate }}
+    </button>
+  }
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'MODALS.SELECT-GAMES.title' | translate }}</h4>
+  <div class="ml-auto">
+    <a type="button" (click)="createNewGame()" class="btn btn-block btn-success">{{ 'MODALS.SELECT-GAMES.addNewGame' | translate }}</a>
+    @if (config.selectedGameId) {
+      <button type="button" class="btn-close close pull-right" data-dismiss="modal" aria-label="Close"
+              (click)="cancel()">
+        <span aria-hidden="true"></span>
+      </button>
+    }
+  </div>
+</div>
+<div class="modal-body">
+  @for (game of config.games; track game) {
+      <div class="row">
+        <div class="col-12">
+          <div class="card select-game-card" (click)="selectGame(game)">
+            <div class="card-body">
+              <div class="d-flex justify-content-start">
+                <input type="checkbox" class="select-checkbox" (click)="selectGame(game)" [checked]="game.id === config.selectedGameId">
+                <h4 class="ml-4 mt-2">{{ game.name }}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  }
+</div>

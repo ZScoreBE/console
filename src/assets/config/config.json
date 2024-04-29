@@ -1,0 +1,4 @@
+{
+  "baseApiUrl": "http://localhost:8080",
+  "termsUrl": "http://localhost:4200/terms"
+}

@@ -1,0 +1,83 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.PLAYERS-LIST.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <app-search-input (searchValueChanged)="search($event)" (resetHappened)="searchReset()"
+                                  [shouldUpdateQueryParams]="false"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="width-60">{{ 'COMMON.name' | translate }}</th>
+                <th class="width-20">{{ 'COMPONENTS.PLAYERS-LIST.lastSignIn' | translate }}</th>
+                <th class="width-20 text-center">{{ 'COMMON.actions' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (collection && collection.items) {
+                  @for (item of collection.items; track item) {
+                    <tr>
+                      <td>{{ item.name }}</td>
+                      <td>
+                        @if (item.lastSignIn) {
+                          {{ item.lastSignIn | date:'dd/MM/yyyy HH:mm'}}
+                        } @else {
+                          {{ 'COMPONENTS.PLAYERS-LIST.neverSignedIn' | translate }}
+                        }
+                      </td>
+                      <td class="text-center">
+                        <a [routerLink]="['/players', item.id]" class="btn btn-primary mr-2">
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <button class="btn btn-danger" (click)="askDeletePlayer(item)">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <h4 class="text-muted">{{ 'COMPONENTS.PLAYERS-LIST.empty' | translate }}</h4>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+          @if (collection && collection.items.length > 0) {
+            <div class="card-footer">
+              <app-pagination [class]="'justify-content-center'"
+                              [collection]="collection"
+                              (pageChange)="setPage($event)"
+              ></app-pagination>
+            </div>
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

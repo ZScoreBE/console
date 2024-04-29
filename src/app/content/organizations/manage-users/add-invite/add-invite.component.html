@@ -1,0 +1,54 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.USERS.MANAGE.INVITE-LIST.ADD.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{{ 'COMPONENTS.USERS.MANAGE.INVITE-LIST.ADD.subTitle' | translate }}</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.name' | translate }}</label>
+                  <input formControlName="name" id="name" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.name' | translate}}"
+                         [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.name | translate:validationMessageValues.name }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">{{ 'FORM.FIELDS.email' | translate }}</label>
+                  <input formControlName="email" id="email" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.email' | translate}}"
+                         [ngClass]="{'is-valid': form.get('email').valid, 'is-invalid': formErrors.email}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.email | translate:validationMessageValues.email }}</div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="form.dirty && form.invalid" type="submit">
+                  {{ 'COMPONENTS.USERS.MANAGE.INVITE-LIST.ADD.submit' | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

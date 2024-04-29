@@ -1,0 +1,50 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+  <a [routerLink]="['/']" class="brand-link">
+    <img ngSrc="assets/img/logo.png" alt="Logo" class="brand-image" style="" height="971" width="971">
+    <span class="brand-text font-weight-bold">Z-Score</span>
+  </a>
+
+  <div class="sidebar">
+
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item">
+          <a [routerLink]="['/']" class="nav-link">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>{{'COMPONENTS.SIDE-BAR.dashboard' | translate}}</p>
+          </a>
+        </li>
+        <li class="nav-header text-capitalize">{{'COMPONENTS.SIDE-BAR.systems' | translate}}</li>
+        <li class="nav-item">
+          <a [routerLink]="['/players']" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>{{'COMPONENTS.SIDE-BAR.players' | translate}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/leaderboards']" class="nav-link">
+            <i class="nav-icon fas fa-rectangle-list"></i>
+            <p>{{'COMPONENTS.SIDE-BAR.leaderboards' | translate}}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/achievements']" class="nav-link">
+            <i class="nav-icon fas fa-trophy"></i>
+            <p>{{'COMPONENTS.SIDE-BAR.achievements' | translate}}</p>
+          </a>
+        </li>
+        <li class="nav-header text-capitalize">{{'COMPONENTS.SIDE-BAR.settings' | translate}}</li>
+        <li class="nav-item">
+          <a [routerLink]="['/settings/general']" class="nav-link">
+            <i class="nav-icon fas fa-sliders"></i>
+            <p>{{'COMPONENTS.SIDE-BAR.general' | translate}}</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</aside>

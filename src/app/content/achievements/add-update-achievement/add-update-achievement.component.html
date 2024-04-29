@@ -1,0 +1,89 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>
+          {{ (isUpdate ? 'COMPONENTS.ACHIEVEMENTS.UPDATE.title' : 'COMPONENTS.ACHIEVEMENTS.ADD.title') | translate }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.name' | translate }}</label>
+                  <input formControlName="name" id="name" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.name' | translate}}"
+                         [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.name | translate:validationMessageValues.name }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.description' | translate }}</label>
+                  <textarea formControlName="description" id="description" class="form-control" rows="4"
+                         placeholder="{{'FORM.FIELDS.description' | translate}}"
+                         [ngClass]="{'is-valid': form.get('description').valid, 'is-invalid': formErrors.description}"
+                  ></textarea>
+                  <div class="invalid-feedback">{{ formErrors.description | translate:validationMessageValues.description }}</div>
+                </div>
+
+
+                @if (!isUpdate) {
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.achievementType' | translate }}</label>
+                  <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action"
+                            (click)="selectType(AchievementType.SINGLE)"
+                            [ngClass]="{'active': currentType === AchievementType.SINGLE}">
+                      <h5 class="mb-1 text-bold">{{ 'ENUM.ACHIEVEMENT-TYPE.single' | translate }}</h5>
+                      <p class="mb-0" [ngClass]="{'text-muted': currentType !== AchievementType.SINGLE}">
+                        <i class="fas fa-info-circle"></i> {{ 'ENUM.ACHIEVEMENT-TYPE.singleDescription' | translate }}
+                      </p>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                            (click)="selectType(AchievementType.MULTIPLE)"
+                            [ngClass]="{'active': currentType === AchievementType.MULTIPLE}">
+                      <h5 class="mb-1 text-bold">{{ 'ENUM.ACHIEVEMENT-TYPE.multiple' | translate }}</h5>
+                      <p class="mb-0" [ngClass]="{'text-muted': currentType !== AchievementType.MULTIPLE}">
+                        <i class="fas fa-info-circle"></i> {{ 'ENUM.ACHIEVEMENT-TYPE.multipleDescription' | translate }}
+                      </p>
+                    </button>
+                  </div>
+                </div>
+                }
+
+                @if (currentType === AchievementType.MULTIPLE) {
+                  <div class="form-group">
+                    <label for="neededCount">{{ 'FORM.FIELDS.achievementNeededCount' | translate }}</label>
+                    <input formControlName="neededCount" id="neededCount" type="number" class="form-control" min="1"
+                           placeholder="{{'FORM.FIELDS.achievementNeededCount' | translate}}"
+                           [ngClass]="{'is-valid': form.get('neededCount').valid, 'is-invalid': formErrors.neededCount}"
+                    />
+                    <div class="invalid-feedback">{{ formErrors.neededCount | translate:validationMessageValues.neededCount }}</div>
+                  </div>
+                }
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="form.dirty && form.invalid" type="submit">
+                  {{ (isUpdate ? 'COMPONENTS.ACHIEVEMENTS.UPDATE.submit' : 'COMPONENTS.ACHIEVEMENTS.ADD.submit') | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

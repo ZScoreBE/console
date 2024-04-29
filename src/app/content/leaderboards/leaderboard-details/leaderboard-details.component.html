@@ -1,0 +1,108 @@
+@if (leaderboard) {
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12 text-center">
+          <h1>{{ 'COMPONENTS.LEADERBOARDS.DETAILS.title' | translate: {name: leaderboard.name} }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+
+        @if (leaderboard) {
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.LEADERBOARDS.DETAILS.subTitleInfo' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMPONENTS.LEADERBOARDS.id' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ leaderboard.id }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMPONENTS.LEADERBOARDS.direction' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{ ('ENUM.SORT-DIRECTION.' + (leaderboard.direction | lowercase)) | translate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMPONENTS.LEADERBOARDS.scoreType' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{ ('ENUM.LEADERBOARD-SCORE-TYPE.' + (leaderboard.scoreType | lowercase)) | translate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">{{ 'COMPONENTS.LEADERBOARDS.DETAILS.subTitleScores' | translate }}</h3>
+          </div>
+
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="width-70">{{ 'COMMON.name' | translate }}</th>
+                <th class="width-30 text-center">{{ 'COMPONENTS.LEADERBOARDS.DETAILS.score' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (collection && collection.items) {
+                  @for (item of collection.items; track item) {
+                    <tr>
+                      <td>{{ item.player.name }}</td>
+                      <td class="text-center">{{ item.score }}</td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <h4 class="text-muted">{{ 'COMPONENTS.LEADERBOARDS.DETAILS.scoresEmpty' | translate }}</h4>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+          @if (collection && collection.items.length > 0) {
+            <div class="card-footer">
+              <app-pagination [class]="'justify-content-center'"
+                              [collection]="collection"
+                              (pageChange)="setPage($event)"
+              ></app-pagination>
+            </div>
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

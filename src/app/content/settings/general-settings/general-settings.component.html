@@ -1,0 +1,72 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{'COMPONENTS.SETTINGS.GENERAL.title' | translate}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+
+        <alert type="info" [dismissible]="false">
+          <i class="fas fa-info-circle"></i> <span class="ml-2">{{'COMPONENTS.SETTINGS.GENERAL.updateInfo' | translate}}</span>
+        </alert>
+
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">{{'FORM.FIELDS.name' | translate}}</label>
+                  <input formControlName="name" id="name" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.name' | translate}}"
+                         [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.name | translate:validationMessageValues.name }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="engine">{{'FORM.FIELDS.engine' | translate}}</label>
+                  <select formControlName="engine" id="engine" class="form-control"
+                          [ngClass]="{'is-valid': form.get('engine').valid, 'is-invalid': formErrors.engine}">
+                    <option value="UNITY">{{'ENUM.GAME-ENGINE.unity' | translate}}</option>
+                    <option value="UNREAL">{{'ENUM.GAME-ENGINE.unreal' | translate}}</option>
+                    <option value="OTHER">{{'ENUM.GAME-ENGINE.other' | translate}}</option>
+                  </select>
+                  <div class="invalid-feedback">{{ formErrors.engine | translate }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="apiKey">{{'FORM.FIELDS.apiKey' | translate}}</label>
+                  <div class="input-group">
+                    <input formControlName="apiKey" id="apiKey" readonly [type]="apiKeyRevealed ? 'text' : 'password'" class="form-control" />
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button" (click)="toggleApiKey()">
+                        <i class="fas" [ngClass]="{'fa-eye': !apiKeyRevealed, 'fa-eye-slash': apiKeyRevealed}"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <button class="btn btn-outline-secondary mt-2" type="button" (click)="aksRegenerateApiKey()">
+                    {{'COMPONENTS.SETTINGS.GENERAL.regenerateKey' | translate}}
+                  </button>
+                </div>
+
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="form.dirty && form.invalid" type="submit">
+                  {{'COMMON.save' | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

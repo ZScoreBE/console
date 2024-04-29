@@ -1,0 +1,50 @@
+<div class="action-page login-page">
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a [routerLink]="['/']" class="h1">
+          <img ngSrc="/assets/img/logo.png" alt="logo" width="55" height="55"/>
+          <b class="ml-2">Z-Score</b>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Sign in for Z-Score</p>
+        <app-flash-message hasFlashMessage></app-flash-message>
+        <app-message-display [error]="error"></app-message-display>
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="email" type="text" class="form-control"
+                       placeholder="{{'FORM.FIELDS.email' | translate}}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="password" type="password" class="form-control"
+                       placeholder="{{'FORM.FIELDS.password' | translate}}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-block mb-2" type="submit" [disabled]="form.invalid">
+              {{'COMPONENTS.LOGIN.submit' | translate}}
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</div>

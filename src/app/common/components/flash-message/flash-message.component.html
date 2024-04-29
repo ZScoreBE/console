@@ -1,0 +1,5 @@
+@if (message != null) {
+  <alert type="{{message.type}}" [dismissible]="true">
+    {{ message.message | translate }}
+  </alert>
+}

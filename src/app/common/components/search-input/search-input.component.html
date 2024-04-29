@@ -1,0 +1,16 @@
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text"><i class="fas fa-search"></i></span>
+  </div>
+  <input class="form-control" #searchField type="text"
+         placeholder="{{'COMMON.search' | translate}}"/>
+  @if (searched) {
+  <div class="input-group-append">
+
+      <button class="btn btn-secondary" (click)="resetSearch()">
+        <i class="fas fa-times"></i>
+      </button>
+  </div>
+  }
+</div>
+

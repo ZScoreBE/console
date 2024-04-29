@@ -1,0 +1,25 @@
+<app-message-display [error]="error"></app-message-display>
+
+@if (loadingDone) {
+  <div class="wrapper" style="height: auto">
+    <app-header></app-header>
+    <app-side-bar></app-side-bar>
+
+    <div class="content-wrapper">
+
+      @if (!isSandboxMode) {
+        <div class="row pt-3">
+          <div class="col-8 offset-2">
+            <alert type="warning">
+              <i class="fas fa-triangle-exclamation"></i> {{ 'COMPONENTS.CONTENT.liveModeWarning' | translate }}
+            </alert>
+          </div>
+        </div>
+      }
+
+      <router-outlet></router-outlet>
+    </div>
+
+    <app-footer></app-footer>
+  </div>
+}

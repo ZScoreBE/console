@@ -1,0 +1,80 @@
+@if (achievement) {
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12 text-center">
+          <h1>{{ 'COMPONENTS.ACHIEVEMENTS.DETAILS.title' | translate: {name: achievement.name} }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+
+        @if (achievement) {
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.ACHIEVEMENTS.DETAILS.subTitleInfo' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.ACHIEVEMENTS.id' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ achievement.id }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.ACHIEVEMENTS.type' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{ ('ENUM.ACHIEVEMENT-TYPE.' + (achievement.type | lowercase)) | translate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.ACHIEVEMENTS.neededCount' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{achievement.neededCount ?? '-'}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.ACHIEVEMENTS.DETAILS.subTitleDescription' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <p>{{achievement.description}}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

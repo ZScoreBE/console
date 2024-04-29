@@ -1,0 +1,19 @@
+<ul class="pagination {{class}}">
+  <li class="page-item" [ngClass]="{disabled: collection.currentPage <= 1}">
+    <a class="page-link" href="" (click)="changePage(collection.currentPage - 1)">
+      <span>&laquo;</span>
+    </a>
+  </li>
+
+  @for (page of pages; track page) {
+    <li class="page-item" [ngClass]="{active: page === collection.currentPage}">
+      <a class="page-link" href="" (click)="changePage(page)">{{ page }}</a>
+    </li>
+  }
+
+  <li class="page-item" [ngClass]="{disabled: collection.currentPage >= collection.lastPage}">
+    <a class="page-link" href="" (click)="changePage(collection.currentPage + 1)">
+      <span>&raquo;</span>
+    </a>
+  </li>
+</ul>

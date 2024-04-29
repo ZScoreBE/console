@@ -1,0 +1,118 @@
+<div class="action-page register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a [routerLink]="['/']" class="h1">
+          <img ngSrc="/assets/img/logo.png" alt="logo" width="55" height="55"/>
+          <b class="ml-2">Z-Score</b>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Sign up for Z-Score</p>
+        <app-message-display [error]="error"></app-message-display>
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="name" type="text" class="form-control"
+                       placeholder="{{'FORM.FIELDS.name' | translate}}"
+                       [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                  </div>
+                </div>
+                <div class="invalid-feedback">{{ formErrors.name | translate:validationMessageValues.name }}</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="email" type="text" class="form-control"
+                       placeholder="{{'FORM.FIELDS.email' | translate}}"
+                       [ngClass]="{'is-valid': form.get('email').valid, 'is-invalid': formErrors.email}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+                <div class="invalid-feedback">{{ formErrors.email | translate:validationMessageValues.email }}</div>
+              </div>
+            </div>
+
+            @if (!invite && !inviteCode) {
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input formControlName="organizationName" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.organizationName' | translate}}"
+                         [ngClass]="{'is-valid': form.get('organizationName').valid, 'is-invalid': formErrors.organizationName}"
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-industry"></span>
+                    </div>
+                  </div>
+                  <div
+                    class="invalid-feedback">{{ formErrors.organizationName | translate:validationMessageValues.organizationName }}
+                  </div>
+                </div>
+              </div>
+            }
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="password" type="password" class="form-control"
+                       placeholder="{{'FORM.FIELDS.password' | translate}}"
+                       [ngClass]="{'is-valid': form.get('password').valid, 'is-invalid': formErrors.password}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <app-password-strength-meter [password]="currentPassword"
+                                           (strengthChange)="handlePasswordStrengthChange($event)">
+              </app-password-strength-meter>
+              <div class="invalid-feedback"
+                   [style.display]="formErrors.password ? 'block' : 'none'">{{ formErrors.password | translate }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input formControlName="repeatPassword" type="password" class="form-control"
+                       placeholder="{{'FORM.FIELDS.repeatPassword' | translate}}"
+                       [ngClass]="{'is-valid': form.get('repeatPassword').valid, 'is-invalid': formErrors.repeatPassword}"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+                <div class="invalid-feedback">{{ formErrors.repeatPassword | translate }}</div>
+              </div>
+            </div>
+
+            <div class="form-check pl-0 mb-2">
+              <input type="checkbox" id="terms" formControlName="terms">
+              <label for="terms" class="form-check-label ml-2"
+                     [innerHTML]="'COMPONENTS.REGISTER.terms' | translate: {termsUrl: termsUrl}">
+              </label>
+            </div>
+
+            <button class="btn btn-primary btn-block mb-2" type="submit" [disabled]="form.invalid">
+              {{ 'COMPONENTS.REGISTER.submit' | translate }}
+            </button>
+
+            <a [routerLink]="['/sign-in']"
+               class="text-center">{{ 'COMPONENTS.REGISTER.alreadyAccount' | translate }}</a>
+          </form>
+
+        }
+      </div>
+    </div>
+  </div>
+</div>

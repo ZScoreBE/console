@@ -1,0 +1,84 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>
+          {{ (isUpdate ? 'COMPONENTS.LEADERBOARDS.UPDATE.title' : 'COMPONENTS.LEADERBOARDS.ADD.title') | translate }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.name' | translate }}</label>
+                  <input formControlName="name" id="name" type="text" class="form-control"
+                         placeholder="{{'FORM.FIELDS.name' | translate}}"
+                         [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.name | translate:validationMessagesValues.name }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="direction">{{'FORM.FIELDS.sortDirection' | translate}}</label>
+                  <select formControlName="direction" id="direction" class="form-control"
+                          [ngClass]="{'is-valid': form.get('direction').valid, 'is-invalid': formErrors.direction}">
+                    <option value="ASC">{{'ENUM.SORT-DIRECTION.asc' | translate}}</option>
+                    <option value="DESC">{{'ENUM.SORT-DIRECTION.desc' | translate}}</option>
+                  </select>
+                  <div class="invalid-feedback">{{ formErrors.sortDirection | translate }}</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="name">{{ 'FORM.FIELDS.leaderboardScoreType' | translate }}</label>
+                  <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action"
+                            (click)="selectScoreType(LeaderboardScoreType.HIGHEST)"
+                            [ngClass]="{'active': currentScoreType === LeaderboardScoreType.HIGHEST}">
+                      <h5 class="mb-1 text-bold">{{ 'ENUM.LEADERBOARD-SCORE-TYPE.highest' | translate }}</h5>
+                      <p class="mb-0" [ngClass]="{'text-muted': currentScoreType !== LeaderboardScoreType.HIGHEST}">
+                        <i class="fas fa-info-circle"></i> {{ 'ENUM.LEADERBOARD-SCORE-TYPE.highestDescription' | translate }}
+                      </p>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                            (click)="selectScoreType(LeaderboardScoreType.LATEST)"
+                            [ngClass]="{'active': currentScoreType === LeaderboardScoreType.LATEST}">
+                      <h5 class="mb-1 text-bold">{{ 'ENUM.LEADERBOARD-SCORE-TYPE.latest' | translate }}</h5>
+                      <p class="mb-0" [ngClass]="{'text-muted': currentScoreType !== LeaderboardScoreType.LATEST}">
+                        <i class="fas fa-info-circle"></i> {{ 'ENUM.LEADERBOARD-SCORE-TYPE.latestDescription' | translate }}
+                      </p>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action"
+                            (click)="selectScoreType(LeaderboardScoreType.MULTIPLE)"
+                            [ngClass]="{'active': currentScoreType === LeaderboardScoreType.MULTIPLE}">
+                      <h5 class="mb-1 text-bold">{{ 'ENUM.LEADERBOARD-SCORE-TYPE.multiple' | translate }}</h5>
+                      <p class="mb-0" [ngClass]="{'text-muted': currentScoreType !== LeaderboardScoreType.MULTIPLE }">
+                        <i class="fas fa-info-circle"></i> {{ 'ENUM.LEADERBOARD-SCORE-TYPE.multipleDescription' | translate }}
+                      </p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="form.dirty && form.invalid" type="submit">
+                  {{ (isUpdate ? 'COMPONENTS.LEADERBOARDS.UPDATE.submit' : 'COMPONENTS.LEADERBOARDS.ADD.submit') | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

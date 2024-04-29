@@ -1,0 +1,7 @@
+@if (config && config.isServed && !config.error) {
+  <router-outlet></router-outlet>
+} @else if (config && config.isServed && config.error) {
+  <h1>Could not load the App Config: did you define the file: /assets/config/config.json</h1>
+}
+
+<app-loading></app-loading>

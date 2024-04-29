@@ -1,0 +1,93 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.USERS.MANAGE.USER-LIST.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <app-search-input (searchValueChanged)="search($event)" (resetHappened)="searchReset()"
+                                  [shouldUpdateQueryParams]="false"/>
+              </div>
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <div class="align-self-end">
+                  <a [routerLink]="['/users/invites/add']" type="button" class="btn btn-success mt-md-0 mt-2">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="width-38">{{ 'COMMON.name' | translate }}</th>
+                <th class="width-38">{{ 'COMMON.email' | translate }}</th>
+                <th class="width-8">{{ 'COMPONENTS.USERS.MANAGE.USER-LIST.admin' | translate }}</th>
+                <th class="width-16">{{ 'COMMON.actions' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (collection && collection.items) {
+                  @for (item of collection.items; track item) {
+                    <tr>
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.email }}</td>
+                      <td class="align-content-center">
+                        @if (item.organizationAdmin) {
+                          <h5>
+                          <span class="badge badge-success"><i
+                            class="fas fa-check"></i> {{ 'COMMON.yes' |translate }}</span>
+                          </h5>
+                        } @else {
+                          <h5>
+                          <span class="badge badge-danger"><i
+                            class="fas fa-times"></i> {{ 'COMMON.no' |translate }}</span>
+                          </h5>
+                        }
+                      </td>
+                      <td>
+                        <button class="btn btn-outline-secondary" (click)="resetPassword(item)">
+                          {{ 'COMPONENTS.USERS.MANAGE.USER-LIST.resetPassword' | translate }}
+                        </button>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <h4 class="text-muted">{{ 'COMPONENTS.USERS.MANAGE.USER-LIST.empty' | translate }}</h4>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+          @if (collection && collection.items.length > 0) {
+            <div class="card-footer">
+              <app-pagination [class]="'justify-content-center'"
+                              [collection]="collection"
+                              (pageChange)="setPage($event)"
+              ></app-pagination>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

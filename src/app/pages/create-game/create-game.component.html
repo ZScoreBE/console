@@ -1,0 +1,46 @@
+<div class="action-page register-page">
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a [routerLink]="['/']" class="h1">
+          <img ngSrc="/assets/img/logo.png" alt="logo" width="55" height="55"/>
+          <b class="ml-2">Z-Score</b>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">{{'COMPONENTS.CREATE-GAME.title' | translate}}</p>
+        <app-message-display [error]="error"></app-message-display>
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group">
+              <label for="name">{{'FORM.FIELDS.name' | translate}}</label>
+                <input formControlName="name" id="name" type="text" class="form-control"
+                       placeholder="{{'FORM.FIELDS.name' | translate}}"
+                       [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                />
+                <div class="invalid-feedback">{{ formErrors.name | translate:validationMessageValues.name }}</div>
+              </div>
+
+            <div class="form-group">
+              <label for="engine">{{'FORM.FIELDS.engine' | translate}}</label>
+              <select formControlName="engine" id="engine" class="form-control"
+                      [ngClass]="{'is-valid': form.get('engine').valid, 'is-invalid': formErrors.engine}">
+                <option value="" disabled selected>{{'COMPONENTS.CREATE-GAME.selectAnEngine' | translate}}</option>
+                <option value="UNITY">{{'ENUM.GAME-ENGINE.unity' | translate}}</option>
+                <option value="UNREAL">{{'ENUM.GAME-ENGINE.unreal' | translate}}</option>
+                <option value="OTHER">{{'ENUM.GAME-ENGINE.other' | translate}}</option>
+              </select>
+              <div class="invalid-feedback">{{ formErrors.engine | translate }}</div>
+            </div>
+
+
+            <button class="btn btn-primary btn-block mb-2" type="submit" [disabled]="form.invalid">
+              {{'COMPONENTS.CREATE-GAME.submit' | translate}}
+            </button>
+          </form>
+
+        }
+      </div>
+    </div>
+  </div>
+</div>
