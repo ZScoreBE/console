@@ -19,7 +19,7 @@ export class UserService {
 
   registerUser(formData: any, inviteCode: string): Observable<boolean> {
     const body: RegisterRequest = {
-      organization: inviteCode ? {name: formData.organizationName} : null,
+      organization: formData.organizationName,
       user: {
         name: formData.name,
         email: formData.email,
