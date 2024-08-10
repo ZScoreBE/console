@@ -37,7 +37,6 @@ export class LeaderboardDetailsComponent extends BaseCollectionComponent<Leaderb
   }
 
   override ngOnInit() {
-    console.log('init');
     const routeSnapshot = this.route.snapshot;
 
     if (!routeSnapshot.params['id']) {

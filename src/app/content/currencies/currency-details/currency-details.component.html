@@ -1,0 +1,137 @@
+@if (currency) {
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12 text-center">
+          <h1>{{ 'COMPONENTS.CURRENCIES.DETAILS.title' | translate: {name: currency.name} }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+
+        @if (currency) {
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.CURRENCIES.DETAILS.subTitleInfo' | translate }}</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMMON.id' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ currency.id }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMMON.name' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ currency.name }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">{{ 'COMPONENTS.CURRENCIES.key' | translate }}</span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ currency.key }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">{{ 'COMPONENTS.CURRENCIES.DETAILS.subTitleOffers' | translate }}</h3>
+            <br />
+
+          </div>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <app-search-input (searchValueChanged)="search($event)" (resetHappened)="searchReset()"
+                                  [shouldUpdateQueryParams]="false"/>
+              </div>
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <div class="align-self-end">
+                  @if (currency) {
+                    <a [routerLink]="['/currencies', currency.id, 'offers', 'add']" type="button" class="btn btn-success mt-md-0 mt-2">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="width-25">{{ 'COMMON.name' | translate }}</th>
+                <th class="width-10 text-center">{{ 'COMPONENTS.CURRENCIES.key' | translate }}</th>
+                <th class="width-10 text-center">{{ 'COMPONENTS.CURRENCIES.DETAILS.offerAmount' | translate }}</th>
+                <th class="width-15 text-center">{{ 'COMPONENTS.CURRENCIES.DETAILS.offerPrice' | translate }}</th>
+                <th class="width-15 text-center">{{ 'COMPONENTS.CURRENCIES.DETAILS.offerDiscountPrice' | translate }}</th>
+                <th class="width-25 text-center">{{ 'COMMON.actions' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (collection && collection.items) {
+                  @for (item of collection.items; track item) {
+                    <tr>
+                      <td>{{ item.name }}</td>
+                      <td class="text-center">{{ item.key }}</td>
+                      <td class="text-center">{{ item.amount }}</td>
+                      <td class="text-center">{{ item.priceEx | currency: 'EUR' }}</td>
+                      <td class="text-center">{{ item.discountPriceEx ? (item.discountPriceEx | currency: 'EUR') : '-' }}</td>
+                      <td class="text-center">
+                        <a [routerLink]="['/currencies', currency.id, 'offers', item.id, 'update']" class="btn btn-warning mr-0 mr-sm-2 mt-1 mt-sm-0">
+                          <i class="fas fa-pencil"></i>
+                        </a>
+                        <button class="btn btn-danger mt-1 mt-sm-0" (click)="askForDeletion(item)">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <h4 class="text-muted">{{ 'COMPONENTS.LEADERBOARDS.DETAILS.scoresEmpty' | translate }}</h4>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+          @if (collection && collection.items.length > 0) {
+            <div class="card-footer">
+              <app-pagination [class]="'justify-content-center'"
+                              [collection]="collection"
+                              (pageChange)="setPage($event)"
+              ></app-pagination>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

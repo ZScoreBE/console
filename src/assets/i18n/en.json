@@ -7,7 +7,8 @@
     "yes": "Yes",
     "no": "No",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "id": "ID"
   },
   "ERRORS": {
     "somethingWentWrong": "Something went wrong. Please try again.",
@@ -30,7 +31,11 @@
       "sortDirection": "Sorting direction",
       "description": "Description",
       "achievementType": "Achievement type",
-      "achievementNeededCount": "How much is needed?"
+      "achievementNeededCount": "How much is needed?",
+      "key": "Key",
+      "amount": "Amount",
+      "priceEx": "Price (Ex VAT)",
+      "discountPriceEx": "Discount price (Ex VAT)"
     },
     "ERROR": {
       "required": "This field is required",
@@ -71,7 +76,8 @@
       "achievements": "Achievements",
       "settings": "Settings",
       "general": "General",
-      "players": "Players"
+      "players": "Players",
+      "currencies": "Currencies"
     },
     "REGISTER": {
       "submit": "Sign up",
@@ -226,6 +232,55 @@
         "body": "Are you sure you want to delete the leaderboard: <strong>{{name}}</strong>?",
         "ok": "Delete leaderboard",
         "success": "Leaderboard deleted successfully"
+      }
+    },
+    "CURRENCIES": {
+      "key": "Key",
+      "LIST": {
+        "title": "Currencies",
+        "empty": "No currencies found"
+      },
+      "DETAILS": {
+        "title": "Currency: {{name}}",
+        "subTitleInfo": "Currency info",
+        "subTitleOffers": "Currency offers",
+        "offerAmount": "Amount",
+        "offerPrice": "Price (ex VAT)",
+        "offerDiscountPrice": "Discount Price (ex VAT)"
+      },
+      "ADD": {
+        "title": "Create a new currency",
+        "submit": "Create currency",
+        "success": "Currency successfully created"
+      },
+      "UPDATE": {
+        "title": "Update a currency",
+        "submit": "Update currency",
+        "success": "Currency successfully updated"
+      },
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete the currency: <strong>{{name}}</strong>?",
+        "ok": "Delete currency",
+        "success": "Currency deleted successfully"
+      },
+      "OFFERS": {
+        "ADD": {
+          "title": "Create a new currency offer",
+          "submit": "Create currency offer",
+          "success": "Currency offer successfully created"
+        },
+        "UPDATE": {
+          "title": "Update a currency offer",
+          "submit": "Update currency offer",
+          "success": "Currency offer successfully updated"
+        },
+        "DELETE": {
+          "title": "Are you sure?",
+          "body": "Are you sure you want to delete the currency offer: <strong>{{name}}</strong>?",
+          "ok": "Delete currency offer",
+          "success": "Currency offer deleted successfully"
+        }
       }
     }
   },

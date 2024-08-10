@@ -35,27 +35,27 @@ export const routes: Routes = [
   {
     path: 'sign-up',
     loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent),
-    resolve: { ready: configRouteResolver }
+    resolve: {ready: configRouteResolver}
   },
   {
     path: 'sign-in',
     loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
-    resolve: { ready: configRouteResolver }
+    resolve: {ready: configRouteResolver}
   },
   {
     path: 'action/activate',
     loadComponent: () => import('./pages/activate/activate.component').then(m => m.ActivateComponent),
-    resolve: { ready: configRouteResolver }
+    resolve: {ready: configRouteResolver}
   },
   {
     path: 'action/logout',
     loadComponent: () => import('./pages/logout/logout.component').then(m => m.LogoutComponent),
-    resolve: { ready: configRouteResolver }
+    resolve: {ready: configRouteResolver}
   },
   {
     path: 'action/create-game',
     loadComponent: () => import('./pages/create-game/create-game.component').then(m => m.CreateGameComponent),
-    resolve: { ready: configRouteResolver },
+    resolve: {ready: configRouteResolver},
     canActivate: [authGuard],
   },
   {
@@ -67,21 +67,113 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: "full"},
-      {path: 'dashboard', loadComponent: () => import('./content/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [authGuard],},
-      {path: 'organization/settings', loadComponent: () => import('./content/organizations/organization-settings/organization-settings.component').then(m => m.OrganizationSettingsComponent), canActivate: [authGuard],},
-      {path: 'users/settings', loadComponent: () => import('./content/users/user-settings/user-settings.component').then(m => m.UserSettingsComponent), canActivate: [authGuard],},
-      {path: 'users', loadComponent: () => import('./content/organizations/manage-users/manage-users.component').then(m => m.ManageUsersComponent), canActivate: [authGuard], data: ONLY_ORGANIZATION_ADMIN},
-      {path: 'users/invites/add', loadComponent: () => import('./content/organizations/manage-users/add-invite/add-invite.component').then(m => m.AddInviteComponent), canActivate: [authGuard], data: ONLY_ORGANIZATION_ADMIN},
-      {path: 'players', loadComponent: () => import('./content/players/players-list/players-list.component').then(m => m.PlayersListComponent), canActivate: [authGuard]},
-      {path: 'leaderboards', loadComponent: () => import('./content/leaderboards/leader-boards-list/leader-boards-list.component').then(m => m.LeaderBoardsListComponent), canActivate: [authGuard]},
-      {path: 'leaderboards/add', loadComponent: () => import('./content/leaderboards/add-update-leaderboard/add-update-leaderboard.component').then(m => m.AddUpdateLeaderboardComponent), canActivate: [authGuard]},
-      {path: 'leaderboards/:id/update', loadComponent: () => import('./content/leaderboards/add-update-leaderboard/add-update-leaderboard.component').then(m => m.AddUpdateLeaderboardComponent), canActivate: [authGuard]},
-      {path: 'leaderboards/:id', loadComponent: () => import('./content/leaderboards/leaderboard-details/leaderboard-details.component').then(m => m.LeaderboardDetailsComponent), canActivate: [authGuard]},
-      {path: 'achievements', loadComponent: () => import('./content/achievements/achievements-list/achievements-list.component').then(m => m.AchievementsListComponent), canActivate: [authGuard]},
-      {path: 'achievements/add', loadComponent: () => import('./content/achievements/add-update-achievement/add-update-achievement.component').then(m => m.AddUpdateAchievementComponent), canActivate: [authGuard]},
-      {path: 'achievements/:id/update', loadComponent: () => import('./content/achievements/add-update-achievement/add-update-achievement.component').then(m => m.AddUpdateAchievementComponent), canActivate: [authGuard]},
-      {path: 'achievements/:id', loadComponent: () => import('./content/achievements/achievement-details/achievement-details.component').then(m => m.AchievementDetailsComponent), canActivate: [authGuard]},
-      {path: 'settings/general', loadComponent: () => import('./content/settings/general-settings/general-settings.component').then(m => m.GeneralSettingsComponent), canActivate: [authGuard]},
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./content/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'organization/settings',
+        loadComponent: () => import('./content/organizations/organization-settings/organization-settings.component').then(m => m.OrganizationSettingsComponent),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'users/settings',
+        loadComponent: () => import('./content/users/user-settings/user-settings.component').then(m => m.UserSettingsComponent),
+        canActivate: [authGuard],
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('./content/organizations/manage-users/manage-users.component').then(m => m.ManageUsersComponent),
+        canActivate: [authGuard],
+        data: ONLY_ORGANIZATION_ADMIN
+      },
+      {
+        path: 'users/invites/add',
+        loadComponent: () => import('./content/organizations/manage-users/add-invite/add-invite.component').then(m => m.AddInviteComponent),
+        canActivate: [authGuard],
+        data: ONLY_ORGANIZATION_ADMIN
+      },
+      {
+        path: 'players',
+        loadComponent: () => import('./content/players/players-list/players-list.component').then(m => m.PlayersListComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'leaderboards',
+        loadComponent: () => import('./content/leaderboards/leader-boards-list/leader-boards-list.component').then(m => m.LeaderBoardsListComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'leaderboards/add',
+        loadComponent: () => import('./content/leaderboards/add-update-leaderboard/add-update-leaderboard.component').then(m => m.AddUpdateLeaderboardComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'leaderboards/:id/update',
+        loadComponent: () => import('./content/leaderboards/add-update-leaderboard/add-update-leaderboard.component').then(m => m.AddUpdateLeaderboardComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'leaderboards/:id',
+        loadComponent: () => import('./content/leaderboards/leaderboard-details/leaderboard-details.component').then(m => m.LeaderboardDetailsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'achievements',
+        loadComponent: () => import('./content/achievements/achievements-list/achievements-list.component').then(m => m.AchievementsListComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'achievements/add',
+        loadComponent: () => import('./content/achievements/add-update-achievement/add-update-achievement.component').then(m => m.AddUpdateAchievementComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'achievements/:id/update',
+        loadComponent: () => import('./content/achievements/add-update-achievement/add-update-achievement.component').then(m => m.AddUpdateAchievementComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'achievements/:id',
+        loadComponent: () => import('./content/achievements/achievement-details/achievement-details.component').then(m => m.AchievementDetailsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies',
+        loadComponent: () => import('./content/currencies/currencies-list/currencies-list.component').then(m => m.CurrenciesListComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies/add',
+        loadComponent: () => import('./content/currencies/add-update-currency/add-update-currency.component').then(m => m.AddUpdateCurrencyComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies/:id/update',
+        loadComponent: () => import('./content/currencies/add-update-currency/add-update-currency.component').then(m => m.AddUpdateCurrencyComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies/:id',
+        loadComponent: () => import('./content/currencies/currency-details/currency-details.component').then(m => m.CurrencyDetailsComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies/:currencyId/offers/add',
+        loadComponent: () => import('./content/currencies/add-update-currency-offer/add-update-currency-offer.component').then(m => m.AddUpdateCurrencyOfferComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'currencies/:currencyId/offers/:id/update',
+        loadComponent: () => import('./content/currencies/add-update-currency-offer/add-update-currency-offer.component').then(m => m.AddUpdateCurrencyOfferComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'settings/general',
+        loadComponent: () => import('./content/settings/general-settings/general-settings.component').then(m => m.GeneralSettingsComponent),
+        canActivate: [authGuard]
+      },
     ]
   }
 ];

@@ -1,0 +1,113 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>
+          {{ (isUpdate ? 'COMPONENTS.CURRENCIES.OFFERS.UPDATE.title' : 'COMPONENTS.CURRENCIES.OFFERS.ADD.title') | translate }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.name' | translate }}</label>
+                      <input formControlName="name" id="name" type="text" class="form-control"
+                             placeholder="{{'FORM.FIELDS.name' | translate}}"
+                             [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                      />
+                      <div class="invalid-feedback">{{ formErrors.name | translate:validationMessagesValues.name }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.key' | translate }}</label>
+                      <input formControlName="key" id="key" type="text" class="form-control"
+                             placeholder="{{'FORM.FIELDS.key' | translate}}"
+                             [ngClass]="{'is-valid': form.get('key').valid, 'is-invalid': formErrors.key}"
+                      />
+                      <div class="invalid-feedback">{{ formErrors.key | translate:validationMessagesValues.key }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.amount' | translate }}</label>
+                      <input formControlName="amount" id="amount" type="number" class="form-control" step="1" min="1"
+                             placeholder="{{'FORM.FIELDS.amount' | translate}}"
+                             [ngClass]="{'is-valid': form.get('amount').valid, 'is-invalid': formErrors.amount}"
+                      />
+                      <div class="invalid-feedback">{{ formErrors.key | translate:validationMessagesValues.key }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.priceEx' | translate }}</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">&euro;</div>
+                        </div>
+                        <input formControlName="priceEx" id="priceEx" type="number" class="form-control"
+                               step="0.01" min="0.01"
+                               placeholder="{{'FORM.FIELDS.priceEx' | translate}}"
+                               [ngClass]="{'is-valid': form.get('priceEx').valid, 'is-invalid': formErrors.priceEx}"
+                        />
+                      </div>
+                      <div
+                        class="invalid-feedback">{{ formErrors.priceEx | translate:validationMessagesValues.priceEx }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.discountPriceEx' | translate }}</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">&euro;</div>
+                        </div>
+                        <input formControlName="discountPriceEx" id="discountPriceEx" type="text" class="form-control"
+                               step="0.01" min="0.01"
+                               placeholder="{{'FORM.FIELDS.discountPriceEx' | translate}}"
+                               [ngClass]="{'is-valid': form.get('discountPriceEx').valid, 'is-invalid': formErrors.discountPriceEx}"
+                        />
+                      </div>
+                      <div
+                        class="invalid-feedback">{{ formErrors.discountPriceEx | translate:validationMessagesValues.discountPriceEx }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="form.dirty && form.invalid" type="submit">
+                  {{ (isUpdate ? 'COMPONENTS.CURRENCIES.OFFERS.UPDATE.submit' : 'COMPONENTS.CURRENCIES.OFFERS.ADD.submit') | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

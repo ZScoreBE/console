@@ -1,0 +1,86 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.CURRENCIES.LIST.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <app-search-input (searchValueChanged)="search($event)" (resetHappened)="searchReset()"
+                                  [shouldUpdateQueryParams]="false"/>
+              </div>
+              <div class="col-12 col-md-6 d-flex justify-content-end">
+                <div class="align-self-end">
+                  <a [routerLink]="['/currencies/add']" type="button" class="btn btn-success mt-md-0 mt-2">
+                    <i class="fas fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="width-53">{{ 'COMMON.name' | translate }}</th>
+                <th class="width-20">{{ 'COMPONENTS.CURRENCIES.key' | translate }}</th>
+                <th class="width-27 text-center">{{ 'COMMON.actions' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (collection && collection.items) {
+                  @for (item of collection.items; track item) {
+                    <tr>
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.key }}</td>
+                      <td class="text-center">
+                        <a [routerLink]="['/currencies', item.id]" class="btn btn-primary mr-0 mr-sm-2 mt-1 mt-sm-0">
+                          <i class="fas fa-eye"></i>
+                        </a>
+                        <a [routerLink]="['/currencies', item.id, 'update']" class="btn btn-warning mr-0 mr-sm-2 mt-1 mt-sm-0">
+                          <i class="fas fa-pencil"></i>
+                        </a>
+                        <button class="btn btn-danger mt-1 mt-sm-0" (click)="askForDeletion(item)">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <h4 class="text-muted">{{ 'COMPONENTS.CURRENCIES.LIST.empty' | translate }}</h4>
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+
+          @if (collection && collection.items.length > 0) {
+            <div class="card-footer">
+              <app-pagination [class]="'justify-content-center'"
+                              [collection]="collection"
+                              (pageChange)="setPage($event)"
+              ></app-pagination>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
