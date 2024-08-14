@@ -1,0 +1,67 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>{{ 'COMPONENTS.SETTINGS.PLAYER-LIFE.title' | translate }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-12 d-flex">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" formControlName="enabled" class="custom-control-input" id="enabledSwitch">
+                      <label class="custom-control-label"
+                             for="enabledSwitch">{{ 'COMPONENTS.SETTINGS.PLAYER-LIFE.enabled' | translate }}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="maxLives">{{ 'FORM.FIELDS.maxLives' | translate }}<sup>*</sup></label>
+                  <input formControlName="maxLives" id="maxLives" type="number" min="1" class="form-control"
+                         placeholder="{{'FORM.FIELDS.maxLives' | translate}}"
+                         [ngClass]="{'is-valid': form.get('maxLives').valid, 'is-invalid': formErrors.maxLives}"
+                  />
+                  <div class="invalid-feedback">{{ formErrors.maxLives | translate:validationMessagesValues.maxLives }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="giveLifeAfterSeconds">{{ 'FORM.FIELDS.giveLifeAfterSeconds' | translate }}</label>
+                  <input formControlName="giveLifeAfterSeconds" id="giveLifeAfterSeconds" type="number" min="1"
+                         class="form-control"
+                         placeholder="{{'FORM.FIELDS.giveLifeAfterSeconds' | translate}}"
+                         [ngClass]="{'is-valid': form.get('giveLifeAfterSeconds').valid, 'is-invalid': formErrors.giveLifeAfterSeconds}"
+                  />
+                  <div
+                    class="invalid-feedback">{{ formErrors.giveLifeAfterSeconds | translate:validationMessagesValues.giveLifeAfterSeconds }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="(form.dirty && form.invalid)" type="submit">
+                  {{'COMMON.save' | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

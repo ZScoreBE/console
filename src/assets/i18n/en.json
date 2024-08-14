@@ -35,7 +35,9 @@
       "key": "Key",
       "amount": "Amount",
       "priceEx": "Price (Ex VAT)",
-      "discountPriceEx": "Discount price (Ex VAT)"
+      "discountPriceEx": "Discount price (Ex VAT)",
+      "maxLives": "Max player lives",
+      "giveLifeAfterSeconds": "Give a new life to the player after X seconds"
     },
     "ERROR": {
       "required": "This field is required",
@@ -123,6 +125,11 @@
             "ok": "Regenerate API Keys",
             "success": "Successfully regenerated the API keys"
         }
+      },
+      "PLAYER-LIFE": {
+        "title": "Player life settings",
+        "enabled": "Do you want to enable player lives?",
+        "success": "Successfully updated the player life settings."
       }
     },
     "USERS": {

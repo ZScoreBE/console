@@ -174,6 +174,11 @@ export const routes: Routes = [
         loadComponent: () => import('./content/settings/general-settings/general-settings.component').then(m => m.GeneralSettingsComponent),
         canActivate: [authGuard]
       },
+      {
+        path: 'settings/player-life',
+        loadComponent: () => import('./content/settings/player-life-settings/player-life-settings.component').then(m => m.PlayerLifeSettingsComponent),
+        canActivate: [authGuard]
+      },
     ]
   }
 ];
