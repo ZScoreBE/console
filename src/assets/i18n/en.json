@@ -79,7 +79,10 @@
       "settings": "Settings",
       "general": "General",
       "players": "Players",
-      "currencies": "Currencies"
+      "currencies": "Currencies",
+      "triggers": "Triggers",
+      "player-life": "Player life settings"
+
     },
     "REGISTER": {
       "submit": "Sign up",
@@ -289,6 +292,32 @@
           "success": "Currency offer deleted successfully"
         }
       }
+    },
+    "TRIGGERS": {
+      "key": "Key",
+      "costType": "Cost type",
+      "rewardType": "Reward type",
+      "id": "Id",
+      "costAmount": "Cost amount",
+      "costCurrency": "Cost currency",
+      "rewardAmount": "Reward amount",
+      "rewardCurrency": "Reward currency",
+      "LIST": {
+        "title": "Triggers",
+        "empty": "No triggers found"
+      },
+      "DETAILS": {
+        "title": "Trigger: {{name}}",
+        "subTitleInfo": "Trigger info",
+        "subTitleCost": "Cost info",
+        "subTitleReward": "Reward info"
+      },
+      "DELETE": {
+        "title": "Are you sure?",
+        "body": "Are you sure you want to delete the trigger: <strong>{{name}}</strong>?",
+        "ok": "Delete trigger",
+        "success": "Trigger deleted successfully"
+      }
     }
   },
   "MODALS": {
@@ -325,6 +354,14 @@
       "latestDescription": "The player only has one score on this leaderboard. When you submit a new score for this player it will use this new score",
       "highestDescription": "The player only has one score on this leaderboard. When you submit a new score for this player it will only be updated if that score is higher then it's current score",
       "multipleDescription": "The player has multiple scores on this leaderboard. Every submitted score will be saved"
+    },
+    "TRIGGER-COST-TYPE": {
+      "free": "Free",
+      "currency": "Currency"
+    },
+    "TRIGGER-REWARD-TYPE": {
+      "lives": "Lives",
+      "currency": "Currency"
     }
   }
 }

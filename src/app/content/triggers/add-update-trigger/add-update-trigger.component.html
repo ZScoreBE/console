@@ -1,0 +1,155 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-12 text-center">
+        <h1>
+          {{ (isUpdate ? 'COMPONENTS.TRIGGERS.UPDATE.title' : 'COMPONENTS.TRIGGERS.ADD.title') | translate }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+
+        @if (form) {
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-8">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.name' | translate }}</label>
+                      <input formControlName="name" id="name" type="text" class="form-control"
+                             placeholder="{{'FORM.FIELDS.name' | translate}}"
+                             [ngClass]="{'is-valid': form.get('name').valid, 'is-invalid': formErrors.name}"
+                      />
+                      <div class="invalid-feedback">{{ formErrors.name | translate:validationMessagesValues.name }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label for="name">{{ 'FORM.FIELDS.key' | translate }}</label>
+                      <input formControlName="key" id="key" type="text" class="form-control"
+                             placeholder="{{'FORM.FIELDS.key' | translate}}"
+                             [ngClass]="{'is-valid': form.get('key').valid, 'is-invalid': formErrors.key}"
+                      />
+                      <div class="invalid-feedback">{{ formErrors.key | translate:validationMessagesValues.key }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="costType">{{ 'FORM.FIELDS.costType' | translate }}</label>
+                      <select formControlName="costType" id="costType" class="form-control"
+                              [ngClass]="{'is-valid': form.get('costType').valid, 'is-invalid': formErrors.costType}">
+                        <option value="FREE">{{ 'ENUM.TRIGGER-COST-TYPE.free' | translate }}</option>
+                        <option value="CURRENCY">{{ 'ENUM.TRIGGER-COST-TYPE.currency' | translate }}</option>
+                      </select>
+                      <div class="invalid-feedback">{{ formErrors.costType | translate }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label for="costType">{{ 'FORM.FIELDS.rewardType' | translate }}</label>
+                      <select formControlName="rewardType" id="rewardType" class="form-control"
+                              [ngClass]="{'is-valid': form.get('rewardType').valid, 'is-invalid': formErrors.rewardType}">
+                        <option value="LIVES">{{ 'ENUM.TRIGGER-REWARD-TYPE.lives' | translate }}</option>
+                        <option value="CURRENCY">{{ 'ENUM.TRIGGER-REWARD-TYPE.currency' | translate }}</option>
+                      </select>
+                      <div class="invalid-feedback">{{ formErrors.rewardType | translate }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                @if (!form.get('costCurrencyId').disabled) {
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="costCurrencyId">{{ 'FORM.FIELDS.costCurrency' | translate }}</label>
+                        <select formControlName="costCurrencyId" id="costCurrencyId" class="form-control"
+                                [ngClass]="{'is-valid': form.get('costCurrencyId').valid, 'is-invalid': formErrors.costCurrencyId}">
+                          @for (item of currencies; track item) {
+                            <option [value]="item.id">{{item.name}}</option>
+                          }
+                        </select>
+                        <div class="invalid-feedback">{{ formErrors.costCurrencyId | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+
+                @if (!form.get('costAmount').disabled) {
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="costAmount">{{ 'FORM.FIELDS.costAmount' | translate }}</label>
+                        <input formControlName="costAmount" id="costAmount" type="number" min="1" class="form-control"
+                               placeholder="{{'FORM.FIELDS.costAmount' | translate}}"
+                               [ngClass]="{'is-valid': form.get('costAmount').valid, 'is-invalid': formErrors.costAmount}"
+                        />
+                        <div class="invalid-feedback">{{ formErrors.costAmount | translate:validationMessagesValues.costAmount }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+
+                @if (!form.get('rewardAmount').disabled) {
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="rewardAmount">{{ 'FORM.FIELDS.rewardAmount' | translate }}</label>
+                        <input formControlName="rewardAmount" id="rewardAmount" type="number" min="1" class="form-control"
+                               placeholder="{{'FORM.FIELDS.rewardAmount' | translate}}"
+                               [ngClass]="{'is-valid': form.get('rewardAmount').valid, 'is-invalid': formErrors.rewardAmount}"
+                        />
+                        <div class="invalid-feedback">{{ formErrors.rewardAmount | translate:validationMessagesValues.rewardAmount }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+
+                @if (!form.get('rewardCurrencyId').disabled) {
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="rewardCurrencyId">{{ 'FORM.FIELDS.rewardCurrencyId' | translate }}</label>
+                        <select formControlName="rewardCurrencyId" id="rewardCurrencyId" class="form-control"
+                                [ngClass]="{'is-valid': form.get('rewardCurrencyId').valid, 'is-invalid': formErrors.rewardCurrencyId}">
+                          @for (item of currencies; track item) {
+                            <option [value]="item.id">{{item.name}}</option>
+                          }
+                        </select>
+                        <div class="invalid-feedback">{{ formErrors.rewardCurrencyId | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-primary" [disabled]="(form.dirty && form.invalid)" type="submit">
+                  {{'COMMON.save' | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

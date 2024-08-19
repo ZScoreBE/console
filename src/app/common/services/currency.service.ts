@@ -30,6 +30,11 @@ export class CurrencyService {
       .pipe(catchSomethingWrong());
   }
 
+  getAllCurrencies(): Observable<CurrencyResponse[]> {
+    return this.restService.get<CurrencyResponse[]>(`/games/${this.gameService.selectedGameId}/currencies/all`)
+      .pipe(catchSomethingWrong());
+  }
+
   getCurrency(id: string): Observable<CurrencyResponse> {
     return this.restService.get<CurrencyResponse>(`/games/${this.gameService.selectedGameId}/currencies/${id}`)
       .pipe(catchSomethingWrong());

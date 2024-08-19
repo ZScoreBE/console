@@ -170,6 +170,26 @@ export const routes: Routes = [
         canActivate: [authGuard]
       },
       {
+        path: 'triggers',
+        loadComponent: () => import('./content/triggers/triggers-list/triggers-list.component').then(m => m.TriggersListComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'triggers/add',
+        loadComponent: () => import('./content/triggers/add-update-trigger/add-update-trigger.component').then(m => m.AddUpdateTriggerComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'triggers/:id/update',
+        loadComponent: () => import('./content/triggers/add-update-trigger/add-update-trigger.component').then(m => m.AddUpdateTriggerComponent),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'triggers/:id',
+        loadComponent: () => import('./content/triggers/trigger-details/trigger-details.component').then(m => m.TriggerDetailsComponent),
+        canActivate: [authGuard]
+      },
+      {
         path: 'settings/general',
         loadComponent: () => import('./content/settings/general-settings/general-settings.component').then(m => m.GeneralSettingsComponent),
         canActivate: [authGuard]

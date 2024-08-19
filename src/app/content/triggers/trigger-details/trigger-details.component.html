@@ -1,0 +1,141 @@
+@if (trigger) {
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12 text-center">
+          <h1>{{ 'COMPONENTS.TRIGGERS.DETAILS.title' | translate: {name: trigger.name} }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 ">
+        <app-message-display [error]="error" [success]="success"></app-message-display>
+        <app-flash-message></app-flash-message>
+
+        @if (trigger) {
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.TRIGGERS.DETAILS.subTitleInfo' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span
+                        class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.TRIGGERS.id' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">{{ trigger.id }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.TRIGGERS.costType' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{ ('ENUM.TRIGGER-COST-TYPE.' + (trigger.costType | lowercase)) | translate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <span class="info-box-text text-center text-muted">
+                        {{ 'COMPONENTS.TRIGGERS.rewardType' | translate }}
+                      </span>
+                      <span class="info-box-number text-center text-muted mb-0">
+                        {{ ('ENUM.TRIGGER-REWARD-TYPE.' + (trigger.rewardType | lowercase)) | translate }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          @if (trigger.costType !== TriggerCostType.FREE) {
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{{ 'COMPONENTS.TRIGGERS.DETAILS.subTitleCost' | translate }}</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  @if (trigger.costAmount) {
+                    <div class="col-12 col-sm-6">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">
+                            {{ 'COMPONENTS.TRIGGERS.costAmount' | translate }}
+                          </span>
+                          <span class="info-box-number text-center text-muted mb-0">{{ trigger.costAmount }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  }
+
+                  @if (trigger.costCurrency) {
+                    <div class="col-12 col-sm-6">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">
+                            {{ 'COMPONENTS.TRIGGERS.costCurrency' | translate }}
+                          </span>
+                          <span class="info-box-number text-center text-muted mb-0">{{ trigger.costCurrency.name }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          }
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{{ 'COMPONENTS.TRIGGERS.DETAILS.subTitleReward' | translate }}</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                @if (trigger.rewardAmount) {
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">
+                            {{ 'COMPONENTS.TRIGGERS.rewardAmount' | translate }}
+                          </span>
+                        <span class="info-box-number text-center text-muted mb-0">{{ trigger.rewardAmount }}</span>
+                      </div>
+                    </div>
+                  </div>
+                }
+
+                @if (trigger.rewardCurrency) {
+                  <div class="col-12 col-sm-6">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                          <span class="info-box-text text-center text-muted">
+                            {{ 'COMPONENTS.TRIGGERS.rewardCurrency' | translate }}
+                          </span>
+                        <span class="info-box-number text-center text-muted mb-0">{{ trigger.rewardCurrency.name }}</span>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
