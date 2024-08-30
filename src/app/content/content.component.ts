@@ -50,6 +50,10 @@ export class ContentComponent extends BaseComponent implements OnInit {
     return this.gameService.isSandbox;
   }
 
+  get hasGameSelected(): boolean {
+    return this.gameService.selectedGameId !== null;
+  }
+
   private initialize(result: boolean): void {
     if (!result) {
       this.router.navigateByUrl('/action/create-game').then();

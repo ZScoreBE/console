@@ -16,5 +16,7 @@ export function boolToString(value: boolean): string {
 }
 
 export function stringToBool(value: string): boolean {
+  if (!value) return false;
+
   return value.toLowerCase() === "true";
 }

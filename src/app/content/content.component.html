@@ -17,7 +17,9 @@
         </div>
       }
 
-      <router-outlet></router-outlet>
+      @if (hasGameSelected) {
+        <router-outlet></router-outlet>
+      }
     </div>
 
     <app-footer></app-footer>
